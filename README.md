@@ -1,5 +1,4 @@
 # Goeu
-======
 
 Goeu is a [Go](https://go.dev/) client for the [Noeu](https://gitlab.com/heartbytenet/noeu) database
 
