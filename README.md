@@ -14,7 +14,7 @@ Installation
 
 Install Goeu using the "go get" command:
 ```shell
-go get -u gitlab.com/heartbytenet/goeu
+go get -u github.com/heartbytenet/goeu
 ```
 
 Example
@@ -24,7 +24,7 @@ Example
 package main
 
 import (
-	"gitlab.com/heartbytenet/goeu/pkg/goeu"
+	"github.com/heartbytenet/goeu/pkg/goeu"
 	"log"
 )
 
