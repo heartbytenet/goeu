@@ -109,7 +109,7 @@ func (c *Connection) Exec(cmd *ApiExecuteCommand, res *ApiExecuteResult, callbac
 
 	ks := make([]string, 0)
 	for k, v := range c.Promises {
-		if v.Ended(now(), 10 * 1000) {
+		if v.Ended(now(), 30 * 1000) {
 			ks = append(ks, k)
 		}
 	}
