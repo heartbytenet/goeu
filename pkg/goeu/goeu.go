@@ -2,6 +2,7 @@ package goeu
 
 import (
 	"errors"
+	"log"
 	"os"
 	"time"
 )
@@ -20,7 +21,18 @@ func (g *Goeu) Init(endpoint string, token string) *Goeu {
 }
 
 func (g *Goeu) InitEnv() *Goeu {
-	return g.Init(os.Getenv("NOEU_ENDPOINT"), os.Getenv("NOEU_TOKEN"))
+	endpoint := os.Getenv("NOEU_ENDPOINT")
+	token    := os.Getenv("NOEU_TOKEN")
+
+	if endpoint == "" {
+		log.Fatalln("missing env var $NOEU_ENDPOINT")
+	}
+
+	if token == "" {
+		log.Fatalln("missing env var $NOEU_TOKEN")
+	}
+
+	return g.Init(endpoint, token)
 }
 
 func (g *Goeu) Start(connections int) (err error) {
