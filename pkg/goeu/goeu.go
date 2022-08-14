@@ -67,7 +67,7 @@ func (g *Goeu) Execute(cmd *ApiExecuteCommand, res *ApiExecuteResult) (callback 
 			}
 			time.Sleep(time.Millisecond * 500)
 		}
-		err = errors.New("command took too many attempts")
+		err = errors.New("command took too many attempts. last error:" + res.Error)
 		*res = ApiExecuteResult{
 			Success: false,
 			Error:   err.Error(),

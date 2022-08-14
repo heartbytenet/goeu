@@ -48,8 +48,10 @@ func (p *Pool) Execute(cmd *ApiExecuteCommand, res *ApiExecuteResult, callback c
 		if coni >= goal {
 			err = con.Exec(cmd, res, callback)
 			if err != nil {
+				res.Error = err.Error()
 				err = con.Dial()
 				if err != nil {
+					res.Error = err.Error()
 					return false
 				}
 			} else {
