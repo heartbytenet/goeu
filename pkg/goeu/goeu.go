@@ -55,6 +55,11 @@ func (g *Goeu) Execute(cmd *ApiExecuteCommand, res *ApiExecuteResult) (callback 
 		return
 	}
 
+	if cmd.Namespace == "" || cmd.Method == "" {
+		err = errors.New("cmd namespace or method is absent")
+		return
+	}
+
 	go func() {
 		for attempt := 0; attempt < 10; attempt++ {
 			if g.Pool.Execute(cmd, res, callback) {
