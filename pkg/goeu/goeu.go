@@ -1,22 +1,17 @@
 package goeu
 
 import (
-	"errors"
+	"github.com/heartbytenet/go-lerpc/pkg/lerpc"
 	"log"
 	"os"
-	"time"
 )
 
 type Goeu struct {
-	Pool     *Pool
-	Token    string
-	Endpoint string
+	Client   *lerpc.Client
 }
 
 func (g *Goeu) Init(endpoint string, token string) *Goeu {
-	g.Pool     = (&Pool{}).Init(g)
-	g.Token    = token
-	g.Endpoint = endpoint
+	g.Client = (&lerpc.Client{}).Init(endpoint, token)
 	return g
 }
 
@@ -36,45 +31,17 @@ func (g *Goeu) InitEnv() *Goeu {
 }
 
 func (g *Goeu) Start(connections int) (err error) {
-	err = g.Pool.Start(connections)
-	if err != nil {
-		return
-	}
+	// Todo: start leRPC websocket connections
 	return
 }
 
 func (g *Goeu) Stop() {
-	g.Pool.Stop()
+	// Todo: stop leRPC client
 }
 
-func (g *Goeu) Execute(cmd *ApiExecuteCommand, res *ApiExecuteResult) (callback chan byte, err error) {
-	callback = make(chan byte, 1)
-
-	if cmd == nil || res == nil {
-		err = errors.New("cmd or res is nil")
-		return
-	}
-
-	if cmd.Namespace == "" || cmd.Method == "" {
-		err = errors.New("cmd namespace or method is absent")
-		return
-	}
-
-	go func() {
-		for attempt := 0; attempt < 10; attempt++ {
-			if g.Pool.Execute(cmd, res, callback) {
-				return
-			}
-			time.Sleep(time.Millisecond * 500)
-		}
-		err = errors.New("command took too many attempts. last error:" + res.Error)
-		*res = ApiExecuteResult{
-			Success: false,
-			Error:   err.Error(),
-		}
-		callback <- 42
-		return
-	}()
-
-	return
+// Execute currently uses HTTP-only as the websocket pool implementation is moving to go-leRPC
+// https://github.com/heartbytenet/go-leRPC
+// The working implementation in Goeu is available at commit 48ca169958a45c86904fb2ed9d57211a0b840852
+func (g *Goeu) Execute(cmd *lerpc.ExecuteCommand, res *lerpc.ExecuteResult) (err error) {
+	return g.Client.Execute(cmd, res)
 }

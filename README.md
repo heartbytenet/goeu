@@ -1,11 +1,11 @@
 # Goeu
 
-Goeu is a [Go](https://go.dev/) client for the [Noeu](https://gitlab.com/heartbytenet/noeu) database
+Goeu is a [Go](https://go.dev/) client for the [Noeu](https://gitlab.com/heartbytenet/noeu) database using [leRPC](https://github.com/heartbytenet/go-leRPC) protocol
 
 Features
 -------
 
-* Websocket by default (Http is on the way)
+* Websocket by default, HTTP as fallback
 * Multiple connections for reliability
 * Automatic connection regeneration
 
