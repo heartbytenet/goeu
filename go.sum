@@ -1,4 +1,4 @@
 github.com/gorilla/websocket v1.5.0 h1:PPwGk2jz7EePpoHN/+ClbZu8SPxiqlu12wZP/3sWmnc=
 github.com/gorilla/websocket v1.5.0/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
-github.com/heartbytenet/go-lerpc v0.0.0-20220817232316-a2dafaa059fa h1:wadN3pn3erz4kFTuolCYVq+aSVXCOM5Cyp5Aa/y5lgQ=
-github.com/heartbytenet/go-lerpc v0.0.0-20220817232316-a2dafaa059fa/go.mod h1:dIYKMA5jxWZ/CysUpX4LDJjjUxaUekaZaDiMP1vISl8=
+github.com/heartbytenet/go-lerpc v0.0.0-20220901235731-f682f05a24a5 h1:9Os6ozYktALkuJk5P8lOFW8LHh0jqGd6qwvZsyH0UhQ=
+github.com/heartbytenet/go-lerpc v0.0.0-20220901235731-f682f05a24a5/go.mod h1:i02HprUBiSLk4OJwDQgEOX2Y7L7PNvWopIWrq+XpQ/c=
