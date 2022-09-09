@@ -2,7 +2,7 @@ module github.com/heartbytenet/goeu
 
 go 1.19
 
-require github.com/heartbytenet/go-lerpc v0.0.0-20220909161736-93f57a0f410b
+require github.com/heartbytenet/go-lerpc v0.0.0-20220909204432-f2a58275b54a
 
 require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
@@ -15,5 +15,5 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.40.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
-	golang.org/x/sys v0.0.0-20220908164124-27713097b956 // indirect
+	golang.org/x/sys v0.0.0-20220909162455-aba9fc2a8ff2 // indirect
 )
