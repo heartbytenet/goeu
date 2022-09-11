@@ -46,3 +46,31 @@ func (g *Goeu) Stop() {
 func (g *Goeu) Execute(cmd *proto.ExecuteCommand, res *proto.ExecuteResult) (err error) {
 	return g.Client.Execute(cmd, res)
 }
+
+func (g *Goeu) Eval(filename string, keys []string, args []string) *proto.ExecuteResult {
+	var (
+		res  proto.ExecuteResult
+		data []byte
+		err  error
+	)
+
+	data, err = os.ReadFile(filename)
+	if err != nil {
+		return res.ToError("failed at reading file " + err.Error())
+	}
+
+	err = g.Execute(
+		(&proto.ExecuteCommand{}).
+			SetNamespace("sc").
+			SetMethod("eval").
+			SetParam("sc.dt", string(data)).
+			SetParam("sc.ks", keys).
+			SetParam("sc.ag", args),
+		&res)
+
+	if err != nil {
+		return res.ToError(err.Error())
+	}
+
+	return &res
+}
