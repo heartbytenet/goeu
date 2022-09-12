@@ -47,7 +47,7 @@ func (g *Goeu) Execute(cmd *proto.ExecuteCommand, res *proto.ExecuteResult) (err
 	return g.Client.Execute(cmd, res)
 }
 
-func (g *Goeu) Eval(filename string, keys []string, args []string) *proto.ExecuteResult {
+func (g *Goeu) Eval(filename string, keys []string, args []string) (*proto.ExecuteResult, error) {
 	var (
 		res  proto.ExecuteResult
 		data []byte
@@ -56,7 +56,7 @@ func (g *Goeu) Eval(filename string, keys []string, args []string) *proto.Execut
 
 	data, err = os.ReadFile(filename)
 	if err != nil {
-		return res.ToError("failed at reading file " + err.Error())
+		return nil, err
 	}
 
 	err = g.Execute(
@@ -69,8 +69,8 @@ func (g *Goeu) Eval(filename string, keys []string, args []string) *proto.Execut
 		&res)
 
 	if err != nil {
-		return res.ToError(err.Error())
+		return nil, err
 	}
 
-	return &res
+	return &res, nil
 }
