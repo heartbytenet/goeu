@@ -47,6 +47,15 @@ func (g *Goeu) Execute(cmd *proto.ExecuteCommand, res *proto.ExecuteResult) (err
 	return g.Client.Execute(cmd, res)
 }
 
+func (g *Goeu) Exec(cmd *proto.ExecuteCommand) (*proto.ExecuteResult, error) {
+	var res proto.ExecuteResult
+	var err error
+
+	err = g.Execute(cmd, &res)
+
+	return &res, err
+}
+
 func (g *Goeu) Eval(filename string, keys []string, args []string) (*proto.ExecuteResult, error) {
 	var (
 		res  proto.ExecuteResult
