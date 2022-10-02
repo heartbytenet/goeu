@@ -2,7 +2,7 @@ module github.com/heartbytenet/goeu
 
 go 1.19
 
-require github.com/heartbytenet/go-lerpc v0.0.0-20220930105829-b5e365408e26
+require github.com/heartbytenet/go-lerpc v0.0.0-20221002141348-88b13a35ea48
 
 require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
